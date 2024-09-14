@@ -8,4 +8,4 @@
 - **复赛B榜**：第4名
 - **复现**：```python train.py```
   
-![苏州大学](szdx.png)
+![苏州大学](szdx.jpg)

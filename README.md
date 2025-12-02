@@ -47,18 +47,18 @@
 针对训练集（全球）与测试集（中国）分布不一致的问题，传统的随机 K-Fold 验证失效。
 - 我们提取站点的**统计指纹**（均值、方差、波动率等）。
 - 使用 **K-Means** 将全球站点划分为 13 个隐式气候域。
-- [cite_start]采用 **“留一簇交叉验证 (Leave-One-Cluster-Out)”**，模拟跨域迁移场景，确保线下分数与线上表现高度一致 [cite: 54, 156]。
+- 采用 **“留一簇交叉验证 (Leave-One-Cluster-Out)”**，模拟跨域迁移场景，确保线下分数与线上表现高度一致 。
 
 ### 2. 模型架构: iTransformer + LSTM
-- [cite_start]**Encoder**: 采用 **iTransformer** (Inverted Transformer) [cite: 55, 120]，将整条时间序列视为 Token，显式建模风速、温度、气压等多变量间的**动力学耦合**。
-- [cite_start]**Decoder**: 引入单层 **LSTM** [cite: 121]，利用其递归归纳偏置（Inductive Bias），解决 Transformer 生成长序列时的局部震荡问题，保证预测曲线的时间连续性。
+- **Encoder**: 采用 **iTransformer** (Inverted Transformer) ，将整条时间序列视为 Token，显式建模风速、温度、气压等多变量间的**动力学耦合**。
+- **Decoder**: 引入单层 **LSTM** ，利用其递归归纳偏置（Inductive Bias），解决 Transformer 生成长序列时的局部震荡问题，保证预测曲线的时间连续性。
 
 ### 3. 物理感知特征工程 (Physics-Aware Feature Engineering)
-- [cite_start]**缺失值处理**：采用前向填充（Forward Fill）保护日变化周期 [cite: 62]。
-- [cite_start]**物理特征**：引入热力学与动力学方程，构建**热通量 (Heat Flux)** 和 **风冷指数 (WCI)** 等特征 [cite: 109]，弥补地理位置缺失带来的信息损失。
+- **缺失值处理**：采用前向填充（Forward Fill）保护日变化周期 。
+- **物理特征**：引入热力学与动力学方程，构建**热通量 (Heat Flux)** 和 **风冷指数 (WCI)** 等特征 ，弥补地理位置缺失带来的信息损失。
 
 ### 4. 鲁棒损失函数 (Robust Loss Function)
-- [cite_start]将传统的 MSE 替换为 **Huber Loss** 和 **MAE** [cite: 57, 181]，增强模型对极端天气（大风、骤温）的敏感度，解决预测趋于平滑的问题。
+- 将传统的 MSE 替换为 **Huber Loss** 和 **MAE** ，增强模型对极端天气（大风、骤温）的敏感度，解决预测趋于平滑的问题。
 - 引入**线性递增的时间步加权**，抑制 72 小时长时预测中的累积误差。
 
 ## 🛠️ 环境依赖 (Requirements)

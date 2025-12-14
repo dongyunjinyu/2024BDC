@@ -11,9 +11,6 @@
       <img src="https://img.shields.io/badge/PyTorch-1.10+-ee4c2c.svg" alt="PyTorch">
     </a>
     <a href="#">
-      <img src="https://img.shields.io/badge/Rank-2%2F2626-gold.svg" alt="Rank">
-    </a>
-    <a href="#">
       <img src="https://img.shields.io/badge/License-MIT-green.svg" alt="License">
     </a>
   </p>
